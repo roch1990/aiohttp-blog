@@ -12,7 +12,6 @@ class Entity(Base):
     id = Column(Integer, primary_key=True)
     creation_date = Column(DateTime)
     title = Column(String)
-    category = Column(String)
     text = Column(String)
     rating = Column(Integer)
     voters_count = Column(Integer)

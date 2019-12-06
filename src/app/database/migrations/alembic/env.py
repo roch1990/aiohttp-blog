@@ -7,6 +7,8 @@ from alembic import context
 
 from app import log
 from app.database import Base
+from app.database.models import category
+from app.database.models import entity
 from config import Config
 
 # this is the Alembic Config object, which provides
@@ -27,7 +29,7 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 config.set_section_option(
-    "application",
+    "alembic",
     "sqlalchemy.url",
     f"postgresql+psycopg2://"
     f"{Config.db_user}:{Config.db_pass}@{Config.db_host}:{Config.db_port}/{Config.db_name}",

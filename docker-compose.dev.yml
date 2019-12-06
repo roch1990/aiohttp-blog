@@ -11,8 +11,8 @@ services:
     ports:
       - "5432:5432"
 
-  app:
-    build: .
-    network_mode: host
-    depends_on:
-      - db
+#  app:
+#    build: .
+#    network_mode: host
+#    depends_on:
+#      - db
