@@ -6,7 +6,7 @@ from app.log import get_logger
 log = get_logger()
 
 
-class Admin(AbstractView):
+class AdminDashboard(AbstractView):
 
     @aiohttp_jinja2.template('admin.jinja2')
     async def get(self):

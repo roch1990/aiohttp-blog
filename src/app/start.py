@@ -7,7 +7,7 @@ from aiopg.sa import create_engine
 
 from app.database.common import prepare_tables
 from app.handlers.admin import Admin
-from app.handlers.dashboard import Dashboard
+from app.handlers.user.dashboard import Dashboard
 from config import Config
 
 

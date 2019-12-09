@@ -13,6 +13,11 @@ python 3.7 aiohttp blog sample
 
 - `alembic downgrade $revision`
 
+## how to add fixtures to db
+
+- `cd ./tests/fixtures`
+- `python database.py`
+
 ## problems:
 
 ### can't find app module

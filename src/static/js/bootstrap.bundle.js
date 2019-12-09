@@ -1735,12 +1735,12 @@
   }
 
   /**
-   * Finds the offset parent common to the two provided nodes
+   * Finds the offset parent user to the two provided nodes
    * @method
    * @memberof Popper.Utils
    * @argument {Element} element1
    * @argument {Element} element2
-   * @returns {Element} common offset parent
+   * @returns {Element} user offset parent
    */
   function findCommonOffsetParent(element1, element2) {
     // This check is needed to avoid errors in case one of the elements isn't defined for any reason
@@ -1753,7 +1753,7 @@
     var start = order ? element1 : element2;
     var end = order ? element2 : element1;
 
-    // Get common ancestor container
+    // Get user ancestor container
     var range = document.createRange();
     range.setStart(start, 0);
     range.setEnd(end, 0);

@@ -16,8 +16,7 @@ class Entity(Base):
     rating = Column(Integer)
     voters_count = Column(Integer)
 
-    category_id = Column(Integer, ForeignKey('categories.id'))
-    categories = relationship("Category", back_populates="entities")
+    category_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
 
     def __init__(
             self,
@@ -36,5 +35,4 @@ class Entity(Base):
         self.voters_count = voters_count
 
     def __repr__(self):
-        return f'<Entity>' \
-            f'{self.title} '
+        return f'{self.title}'

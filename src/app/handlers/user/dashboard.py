@@ -9,7 +9,7 @@ from app.log import get_logger
 log = get_logger()
 
 
-class Dashboard(AbstractView):
+class UserDashboard(AbstractView):
 
     @aiohttp_jinja2.template('dashboard.jinja2')
     async def get(self):

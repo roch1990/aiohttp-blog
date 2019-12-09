@@ -12,7 +12,7 @@ class Category(Base):
     title = Column(String)
     image = Column(String)
 
-    entities = relationship("Entity", back_populates="categories")
+    entities = relationship('Entity', backref='categories', lazy=True)
 
     def __init__(
             self,
@@ -25,5 +25,4 @@ class Category(Base):
         self.image = image
 
     def __repr__(self):
-        return f'<Category>' \
-            f'{self.title} '
+        return f'{self.title}'
