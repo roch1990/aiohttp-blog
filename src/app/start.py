@@ -5,9 +5,8 @@ import jinja2
 from aiohttp import web
 from aiopg.sa import create_engine
 
-from app.database.common import prepare_tables
-from app.handlers.admin import Admin
-from app.handlers.user.dashboard import Dashboard
+# from app.database.common import prepare_tables
+from app.handlers.user.category import UserCategory
 from config import Config
 
 
@@ -39,13 +38,8 @@ async def make_app(project_root: str) -> web.Application:
     )
     app.cleanup_ctx.append(database_client)
 
-    # Admin handlers
-    app.router.add_route(path=f'/{path_prefix}/admin', handler=Admin, name='admin', method='get')
-    app.router.add_route(path=f'/{path_prefix}/admin', handler=Admin, name='admin', method='post')
-
-    # Dashboard handlers
-    app.router.add_route(path=f'/{path_prefix}/dashboard', handler=Dashboard, name='dashboard', method='get')
-    app.router.add_route(path=f'/{path_prefix}/dashboard', handler=Dashboard, name='dashboard', method='post')
+    # Category handlers
+    app.router.add_route(path=f'/categories', handler=UserCategory, name='categories', method='get')
 
     # Don't use this for production. Use nginx static (for example) instead.
     app.router.add_static(

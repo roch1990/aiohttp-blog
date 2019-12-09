@@ -5,17 +5,17 @@ categories = [
     {
         'route': 'music',
         'title': 'Music',
-        'image': 'sample_image_music'
+        'image': 'static/images/music.png'
     },
     {
         'route': 'cartoons',
         'title': 'Cartoons',
-        'image': 'sample_image_cartoons'
+        'image': 'static/images/cartoon.png'
     },
     {
         'route': 'sport',
         'title': 'Sport',
-        'image': 'sample_image_sport'
+        'image': 'static/images/sport.png'
     }
 ]
 
