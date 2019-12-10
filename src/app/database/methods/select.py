@@ -20,6 +20,20 @@ async def get_all_categories(
     return output
 
 
+async def get_all_entities(
+        engine: Engine,
+):
+
+    table: Table = Entity.__table__
+
+    async with engine.acquire() as conn:
+        async with conn.begin():
+
+            result = await conn.execute(table.select())
+            output = resultproxy_to_dict(result)
+    return output
+
+
 async def get_entity_by_category(
         engine: Engine,
         category_id: int
@@ -34,3 +48,22 @@ async def get_entity_by_category(
             output = resultproxy_to_dict(result)
 
     return output
+
+
+async def get_entity_by_id(
+        engine: Engine,
+        entity_id: int
+):
+
+    table: Table = Entity.__table__
+
+    async with engine.acquire() as conn:
+        async with conn.begin():
+
+            result = await conn.execute(table.select().where(table.c.id == entity_id))
+            output = resultproxy_to_dict(result)
+
+    if len(output) == 0:
+        return None
+
+    return output[0]

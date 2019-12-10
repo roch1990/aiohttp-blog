@@ -23,7 +23,14 @@ entities = [
     {
         'creation_date': datetime.datetime.now(),
         'title': 'Sector gaza',
-        'text': 'Nost famous punk group',
+        'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+                'sed do eiusmod tempor incididunt ut labore et dolore magna '
+                'aliqua. Ut enim ad minim veniam, quis nostrud exercitation '
+                'ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+                'Duis aute irure dolor in reprehenderit in voluptate velit '
+                'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '
+                'occaecat cupidatat non proident, sunt in culpa qui officia '
+                'deserunt mollit anim id est laborum',
         'rating': 93,
         'voters_count': 100,
         'category': 'music'
@@ -31,7 +38,14 @@ entities = [
     {
         'creation_date': datetime.datetime.now(),
         'title': 'Ruki vverh',
-        'text': 'Electronic group',
+        'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+                'sed do eiusmod tempor incididunt ut labore et dolore magna '
+                'aliqua. Ut enim ad minim veniam, quis nostrud exercitation '
+                'ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+                'Duis aute irure dolor in reprehenderit in voluptate velit '
+                'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '
+                'occaecat cupidatat non proident, sunt in culpa qui officia '
+                'deserunt mollit anim id est laborum',
         'rating': 32,
         'voters_count': 32,
         'category': 'music'
@@ -39,7 +53,14 @@ entities = [
     {
         'creation_date': datetime.datetime.now(),
         'title': 'Nu pogodi',
-        'text': 'Interesting cartoon',
+        'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+                'sed do eiusmod tempor incididunt ut labore et dolore magna '
+                'aliqua. Ut enim ad minim veniam, quis nostrud exercitation '
+                'ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+                'Duis aute irure dolor in reprehenderit in voluptate velit '
+                'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '
+                'occaecat cupidatat non proident, sunt in culpa qui officia '
+                'deserunt mollit anim id est laborum',
         'rating': 5,
         'voters_count': 10,
         'category': 'cartoons'
@@ -47,7 +68,14 @@ entities = [
     {
         'creation_date': datetime.datetime.now(),
         'title': 'Footbal',
-        'text': 'Game for true mans',
+        'text': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, '
+                'sed do eiusmod tempor incididunt ut labore et dolore magna '
+                'aliqua. Ut enim ad minim veniam, quis nostrud exercitation '
+                'ullamco laboris nisi ut aliquip ex ea commodo consequat. '
+                'Duis aute irure dolor in reprehenderit in voluptate velit '
+                'esse cillum dolore eu fugiat nulla pariatur. Excepteur sint '
+                'occaecat cupidatat non proident, sunt in culpa qui officia '
+                'deserunt mollit anim id est laborum',
         'rating': 15,
         'voters_count': 20,
         'category': 'sport'
@@ -87,11 +115,11 @@ def insert_entities(cursor: psycopg2.extensions.cursor):
 if __name__ == "__main__":
     try:
         connection = psycopg2.connect(
-            user = "test",
-            password = "test",
-            host = "127.0.0.1",
-            port = "5432",
-            database = "test"
+            user="test",
+            password="test",
+            host="127.0.0.1",
+            port="5432",
+            database="test"
         )
 
         cursor = connection.cursor()
@@ -104,4 +132,4 @@ if __name__ == "__main__":
         connection.close()
         print("PostgreSQL connection is closed")
     except (Exception, psycopg2.Error) as error :
-        print ("Error while connecting to PostgreSQL", error)
+        print("Error while connecting to PostgreSQL", error)

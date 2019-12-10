@@ -6,7 +6,8 @@ from aiohttp import web
 from aiopg.sa import create_engine
 
 # from app.database.common import prepare_tables
-from app.handlers.user.category import UserCategory
+from app.handlers.user.dashboard import UserDashboard
+from app.handlers.user.entity import UserEntity
 from config import Config
 
 
@@ -18,8 +19,6 @@ async def database_client(app):
         port=Config.db_port,
         password=Config.db_pass
     )
-    if Config.migrations:
-        await prepare_tables(app['database'])
     yield
 
     await app['database'].wait_close()
@@ -39,7 +38,10 @@ async def make_app(project_root: str) -> web.Application:
     app.cleanup_ctx.append(database_client)
 
     # Category handlers
-    app.router.add_route(path=f'/categories', handler=UserCategory, name='categories', method='get')
+    app.router.add_route(path='/', handler=UserDashboard, name='dashboard', method='get')
+
+    # Entity handler
+    app.router.add_route(path='/entity/{entity_id}', handler=UserEntity, name='entity', method='get')
 
     # Don't use this for production. Use nginx static (for example) instead.
     app.router.add_static(

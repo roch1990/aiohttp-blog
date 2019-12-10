@@ -11,16 +11,14 @@ log = get_logger()
 
 class UserCategory(AbstractView):
 
-    @aiohttp_jinja2.template('user_categories.jinja2')
+    @aiohttp_jinja2.template('dashboard.jinja2')
     async def get(self):
 
-        records = await get_all_categories(
-            engine=self.database,
+        categories = await get_all_categories(
+            engine=self.database
         )
 
-        log.debug(records)
-
-        return {'payload': records}
+        return {'payload': categories}
 
     async def post(self):
         return {}

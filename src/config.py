@@ -24,4 +24,6 @@ class Config:
     db_pass = env('DB_PASS', 'test')
     db_user = env('DB_USER', 'test')
 
+    babel_locale = env('BABEL_LOCALE', 'en_US')
+
     migrations = int(env('MIGRATIONS', 0))
