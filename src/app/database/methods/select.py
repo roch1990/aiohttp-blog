@@ -1,3 +1,4 @@
+import sqlalchemy as sa
 from aiopg.sa import Engine
 from sqlalchemy import Table
 
@@ -34,17 +35,22 @@ async def get_all_entities(
     return output
 
 
-async def get_entity_by_category(
+async def get_entity_by_category_name(
         engine: Engine,
-        category_id: int
+        category_title: str
 ):
 
-    table: Table = Entity.__table__
+    entity_table: Table = Entity.__table__
+    category_table: Table = Category.__table__
+
+    join = sa.join(entity_table, category_table, entity_table.c.category_id == category_table.c.id)
+    query = (sa.select([entity_table], use_labels=False)
+             .select_from(join).where(category_table.c.title == category_title))
 
     async with engine.acquire() as conn:
         async with conn.begin():
 
-            result = await conn.execute(table.select().where(table.c.category_id == category_id))
+            result = await conn.execute(query)
             output = resultproxy_to_dict(result)
 
     return output

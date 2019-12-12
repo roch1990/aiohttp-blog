@@ -1,0 +1,41 @@
+{% extends "admin_base_view.jinja2" %}
+
+{% block title %}
+    Admin Categories
+{% endblock %}
+
+{% block content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js"></script>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="form-control">Example textarea</label>
+                    <textarea class="form-control" id="textcontent" placeholder="Type Text..." rows="12" cols="50"></textarea>
+                    <div style="width: 380px;" id="showtext"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js"></script>#}
+    <script>
+        var textcontent = document.getElementById('textcontent');
+
+        textcontent.onkeyup = textcontent.onkeypress = function() {
+            var text = this.value,
+                target = document.getElementById('showtext'),
+                converter = new showdown.Converter(),
+                html = converter.makeHtml(text);
+            console.log(text);
+            console.log(html);
+
+            target.innerHTML = html;
+        }
+    </script>
+
+
+{% endblock %}

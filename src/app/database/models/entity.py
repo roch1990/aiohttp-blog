@@ -12,6 +12,7 @@ class Entity(Base):
     id = Column(Integer, primary_key=True)
     creation_date = Column(DateTime)
     title = Column(String)
+    preview = Column(String)
     text = Column(String)
     rating = Column(Integer)
     voters_count = Column(Integer)
@@ -22,6 +23,7 @@ class Entity(Base):
             self,
             creation_date: datetime,
             title: str,
+            preview: str,
             category: str,
             text: str,
             rating: int,
@@ -29,6 +31,7 @@ class Entity(Base):
     ):
         self.creation_date = creation_date
         self.title = title
+        self.preview = preview
         self.category = category
         self.text = text
         self.rating = rating,

@@ -1,0 +1,32 @@
+{% extends "base_view.jinja2" %}
+
+{% block title %}
+    Categories
+{% endblock %}
+
+{% block content %}
+
+        <div class="container mt-5">
+            <div class="row col-lg">
+                {% for item in payload %}
+                    <div class="card w-75">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ item.image }}" alt="{{ item.title }}" class="img-thumbnail">
+                                </div>
+                                <div class="col-8">
+                                    <h5 class="card-title">{{ item.title }}</h5>
+                                    <p class="card-text">{{ item.description }}</p>
+                                </div>
+                            </div>
+                            <br>
+                            <a href="{{ url('category', category_title=item.title) }}" class="btn btn-primary">Show more</a>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+
+{% endblock %}

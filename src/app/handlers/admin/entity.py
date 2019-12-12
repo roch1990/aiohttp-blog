@@ -8,7 +8,7 @@ log = get_logger()
 
 class AdminEntity(AbstractView):
 
-    @aiohttp_jinja2.template('admin.jinja2')
+    @aiohttp_jinja2.template('admin_categories.jinja2')
     async def get(self):
 
         return {}

@@ -1,6 +1,7 @@
 import datetime
 
 import aiohttp_jinja2
+import markdown2
 from aiohttp import web
 from babel.dates import format_datetime
 
@@ -33,7 +34,9 @@ class UserEntity(AbstractView):
             ),
             locale=Config.babel_locale,
         )
-
+        entity['text'] = markdown2.markdown(
+            entity.get('text')
+        )
         return {'payload': entity}
 
     async def post(self):

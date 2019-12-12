@@ -1,8 +1,8 @@
 """init tables
 
-Revision ID: af86b06c1f5d
+Revision ID: 69a05d2950fa
 Revises: 
-Create Date: 2019-12-10 02:09:28.919731
+Create Date: 2019-12-12 23:29:06.235351
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'af86b06c1f5d'
+revision = '69a05d2950fa'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,6 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('route', sa.String(), nullable=True),
     sa.Column('title', sa.String(), nullable=True),
+    sa.Column('description', sa.String(), nullable=True),
     sa.Column('image', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
@@ -29,6 +30,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('creation_date', sa.DateTime(), nullable=True),
     sa.Column('title', sa.String(), nullable=True),
+    sa.Column('preview', sa.String(), nullable=True),
     sa.Column('text', sa.String(), nullable=True),
     sa.Column('rating', sa.Integer(), nullable=True),
     sa.Column('voters_count', sa.Integer(), nullable=True),

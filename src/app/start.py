@@ -6,6 +6,10 @@ from aiohttp import web
 from aiopg.sa import create_engine
 
 # from app.database.common import prepare_tables
+from app.handlers.admin.categories import AdminCategories
+from app.handlers.user.about_me import UserAbout
+from app.handlers.user.categories import UserCategories
+from app.handlers.user.category import UserCategory
 from app.handlers.user.dashboard import UserDashboard
 from app.handlers.user.entity import UserEntity
 from config import Config
@@ -29,19 +33,24 @@ async def make_app(project_root: str) -> web.Application:
 
     app = web.Application()
 
-    path_prefix = 'awesome_blog'
-
     aiohttp_jinja2.setup(
         app=app,
         loader=jinja2.FileSystemLoader('./templates'),
     )
     app.cleanup_ctx.append(database_client)
 
+    # For user
     # Category handlers
     app.router.add_route(path='/', handler=UserDashboard, name='dashboard', method='get')
-
+    app.router.add_route(path='/categories', handler=UserCategories, name='categories', method='get')
+    app.router.add_route(path='/category/{category_title}', handler=UserCategory, name='category', method='get')
     # Entity handler
     app.router.add_route(path='/entity/{entity_id}', handler=UserEntity, name='entity', method='get')
+    # About me handler
+    app.router.add_route(path='/about_me', handler=UserAbout, name='about_me', method='get')
+
+    # For admin
+    app.router.add_route(path='/admin/categories', handler=AdminCategories, name='admin_categories', method='get')
 
     # Don't use this for production. Use nginx static (for example) instead.
     app.router.add_static(
