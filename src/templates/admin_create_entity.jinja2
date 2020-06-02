@@ -1,0 +1,111 @@
+{% extends "admin_base_view.jinja2" %}
+
+{% block title %}
+    Admin Categories
+{% endblock %}
+
+{% block content %}
+
+    <div class="container mt-lg-5">
+        <form method=post enctype=multipart/form-data>
+            <div class="row">
+                <div class="form-group container-fluid">
+                    <label for="exampleFormControlInput1">Entitry Title</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Type Title...">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group container-fluid">
+                    <label for="exampleFormControlSelect1">Select entity category</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        {% for item in payload %}
+                            <option>{{ item.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="form-control">Enter your preview for post here</label>
+                        <textarea class="form-control" id="previewtextcontent" placeholder="Type Text..." rows="12" cols="50"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="form-control">Live preview</label>
+                        <div style="width: 380px;" id="preview_showtext"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="form-control">Enter your post text here</label>
+                        <textarea class="form-control" id="posttextcontent" placeholder="Type Text..." rows="12" cols="50"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="form-control">Live preview</label>
+                        <div style="width: 380px;" id="post_showtext"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </div>
+            <br>
+            <br>
+
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script>
+        function mdtohtml(id_dst, anystr) {
+            var text = anystr,
+                target = document.getElementById(id_dst),
+                converter = new showdown.Converter(),
+                html = converter.makeHtml(text);
+
+            target.innerHTML = html.replace(/\r?\n/g, '<br />');
+        }
+
+        var previewtextcontent = document.getElementById('previewtextcontent');
+        var posttextcontent = document.getElementById('posttextcontent');
+
+        previewtextcontent.onkeyup = previewtextcontent.onkeypress = mdtohtml(
+            'preview_showtext',
+            previewtextcontent
+        );
+        posttextcontent.onkeyup = posttextcontent.onkeypress = mdtohtml(
+            'post_showtext',
+            posttextcontent
+        );
+
+
+        {#previewtextcontent.onkeyup = previewtextcontent.onkeypress = function() {#}
+        {#    var text = this.value,#}
+        {#        target = document.getElementById('preview_showtext'),#}
+        {#        converter = new showdown.Converter(),#}
+        {#        html = converter.makeHtml(text);#}
+        {##}
+        {#    target.innerHTML = html.replace(/\r?\n/g, '<br />');#}
+        {#/};#}
+        {#posttextcontent.onkeyup = posttextcontent.onkeypress = function() {#}
+        {#    var text = this.value,#}
+        {#        target = document.getElementById('post_showtext'),#}
+        {#        converter = new showdown.Converter(),#}
+        {#        html = converter.makeHtml(text);#}
+        {##}
+        {#    target.innerHTML = html.replace(/\r?\n/g, '<br />');#}
+        {#/}#}
+
+
+    </script>
+
+{% endblock %}

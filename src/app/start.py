@@ -7,6 +7,7 @@ from aiopg.sa import create_engine
 
 # from app.database.common import prepare_tables
 from app.handlers.admin.categories import AdminCategories
+from app.handlers.admin.create_entity import AdminCreateEntity
 from app.handlers.user.about_me import UserAbout
 from app.handlers.user.categories import UserCategories
 from app.handlers.user.category import UserCategory
@@ -50,7 +51,11 @@ async def make_app(project_root: str) -> web.Application:
     app.router.add_route(path='/about_me', handler=UserAbout, name='about_me', method='get')
 
     # For admin
+    # Categories
     app.router.add_route(path='/admin/categories', handler=AdminCategories, name='admin_categories', method='get')
+    # Entities
+    app.router.add_route(path='/admin/entity/create', handler=AdminCreateEntity, name='admin_create_entity', method='get')
+    app.router.add_route(path='/admin/entity/create', handler=AdminCreateEntity, name='admin_create_entity', method='post')
 
     # Don't use this for production. Use nginx static (for example) instead.
     app.router.add_static(
